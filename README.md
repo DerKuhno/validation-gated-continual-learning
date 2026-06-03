@@ -2,6 +2,9 @@
 
 A project for researching the viability and effectiveness of applying a Continual Learning approach for the ESA-ADB satellite telemetry dataset. It explores how this machine learning paradigm can be used for anomaly detection in satellite telemetry data from the European Space Agency (ESA).
 
+## Current State
+**Note:** This repository is currently being tested. If you encounter any bugs or issues, please open an [issue](https://github.com/DerKuhno/validation-gated-continual-learning/issues).
+
 ## Installation
 
 To set up the project environment, you need to have Conda installed. You can create the conda environment with the `environment.yml` file.
