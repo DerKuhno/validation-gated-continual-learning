@@ -19,7 +19,7 @@ conda activate vgcl
 Download the ESA Anomalies Dataset from the link https://doi.org/10.5281/zenodo.12528696 (ESA-Mission1 and ESA-Mission2) into the "data" folder.
 
 ```bash
-cd Continual_Learning_ESA_ADB/data
+cd validation-gated-continual-learning/data
 # Download ESA-Mission1
 wget "https://zenodo.org/records/12528696/files/ESA-Mission1.zip" -O ESA-Mission1.zip
 # Download ESA-Mission2
@@ -46,14 +46,14 @@ conda env create -f environment.yml
 cd ESA-ADB
 # Mission1: 
 PYTHONPATH=Path/to/ESA-ADB python notebooks/data-prep/Mission1_semisupervised_prep_from_raw.py \
-    Path/to/Continual_Learning_ESA_ADB/data/ESA-Mission1
+    Path/to/validation-gated-continual-learning/data/ESA-Mission1
 
 # Mission2: 
 PYTHONPATH=Path/to/ESA-ADB python notebooks/data-prep/Mission2_semiunsupervised_prep_from_raw.py \
-    Path/to/Continual_Learning_ESA_ADB/data/ESA-Mission2
+    Path/to/validation-gated-continual-learning/data/ESA-Mission2
 
 # Copying into the data folder
-mv Path/to/ESA-ADB/data/preprocessed Path/to/Continual_Learning_ESA_ADB/data/
+mv Path/to/ESA-ADB/data/preprocessed Path/to/validation-gated-continual-learning/data/
 ```
 Afterwards, the file structure should look as described below.
 
