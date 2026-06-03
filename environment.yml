@@ -1,0 +1,21 @@
+name: "vgcl"
+channels:
+  - defaults
+dependencies:
+  - python>=3.12,<3.13
+  - pip>=20
+  - numpy
+  - pandas
+  - matplotlib
+  - tqdm
+  - ipykernel
+  - scikit-learn
+  - pip:
+      - torch
+      - river
+      - flwr
+      - portion
+      - numpyencoder
+      - more_itertools
+      - portion
+      - avalanche-lib

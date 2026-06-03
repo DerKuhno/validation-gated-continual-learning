@@ -1,0 +1,6 @@
+data/*
+results/*
+!data/.gitkeep
+
+__pycache__/
+test.py
