@@ -221,8 +221,8 @@ hyperparameter_grid = {
     'continual_learning': [True],
     'cl_method': ["finetuning", "er", "ser"],
     'seed': [42, 43, 44, 45, 46, 47, 48, 49, 50, 51],
-    'buffer_size': [350, 700, 1_400, 3_500, 7_000, 14_000, 35_000, 70_000, 140_000, 350_000],
 }
+```
 
 The experiments from Figure 8 can be done with the following dictionary in run.py:
 
