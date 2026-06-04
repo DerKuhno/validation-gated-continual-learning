@@ -33,7 +33,7 @@ class CL_Manager:
         self.config = config
         self.replay_buffer_save = [[], []]
 
-        self.retrain_batch_idxs = sorted(dataset_manager.test[self.test_set_idx].retrain_batch_idxs(config.batches_per_exp))
+        self.retrain_batch_idxs = sorted(dataset_manager.test.retrain_batch_idxs(config.batches_per_exp))
 
         self.model = model
         self.total_time = 0.0
@@ -84,8 +84,7 @@ class CL_Manager:
         # Save the current state of the replay buffer
         self.dataset_manager.extend_dataset(new_data = self.replay_buffer_save[0].copy(),
                                         anomaly_flag = self.replay_buffer_save[1].copy(), 
-                                        validationsplit = self.config.validation_split_ratio,
-                                        test_set_idx=self.test_set_idx)
+                                        validationsplit = self.config.validation_split_ratio)
 
         logging.info(f"increased validation size = {len(self.dataset_manager.val)-before_num_val}")
         logging.info(f"Indices in tmp = {len(self.dataset_manager.tmp_dataset)}")

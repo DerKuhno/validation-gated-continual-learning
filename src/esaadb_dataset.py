@@ -140,8 +140,8 @@ class ESAADBDataset(TelemanomDataset):
         if config.last_16_weeks:
             train_start = df.index[-(config.batches_per_exp * config.test_batch_size)] # 322560 datapoints = 16 weeks if no missing data
             target_date = df.index.max() - pd.DateOffset(weeks=16) + pd.DateOffset(seconds=30)
-            print(f"Continual Learning will train on data after: {train_start} / target data check: {target_date}")
-            logging.info(f"Continual Learning will train on data after: {train_start} / target data check: {target_date}")
+            print(f"Continual Learning will train on data after: {train_start}")
+            logging.info(f"Continual Learning will train on data after: {train_start}")
             df = df[df.index >= train_start]
             print(f"and end with initial train data until: {df.index.max()}")
             logging.info(f"and end with initial train data until: {df.index.max()}")
@@ -153,8 +153,8 @@ class ESAADBDataset(TelemanomDataset):
             logging.info(f"Continual Learning will train on data after: {df.index.min()}")
             test_df_full = df[df.index >= train_val_end].copy()
             df = df[df.index < train_val_end]
-            print(f"and end with initial train data until: {df.index.max()} / target data check: {target_date}")
-            logging.info(f"and end with initial train data until: {df.index.max()} / target data check: {target_date}")
+            print(f"and end with initial train data until: {df.index.max()}")
+            logging.info(f"and end with initial train data until: {df.index.max()}")
             print(f"It will test hyperparameters with data from: {test_df_full.index.min()}")
             logging.info(f"It will test hyperparameters with data from: {test_df_full.index.min()}")
             print(f"and end the test until: {test_df_full.index.max()}")

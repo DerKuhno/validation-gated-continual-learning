@@ -92,11 +92,10 @@ def initial_training(model: TelemanomModel, dataset_manager: "DatasetManager", c
 def get_cache_path(
     base_path: Path,
     config: ExperimentConfig,
-    context: Dict[str, Any],
     prefix: str = "dataset_cache",
 ) -> Path:
     """
-    Generates a unique cache file path based on the configuration and context.
+    Generates a unique cache file path based on the configuration.
     """
     hasher = hashlib.sha256()
 
@@ -112,9 +111,5 @@ def get_cache_path(
         "model": config.model,
     }
     hasher.update(json.dumps(config_dict, sort_keys=True).encode())
-
-    # Add context to hash
-    context_str = json.dumps(context, sort_keys=True, default=str)
-    hasher.update(context_str.encode())
 
     return base_path / f"{prefix}_{hasher.hexdigest()}.pkl"

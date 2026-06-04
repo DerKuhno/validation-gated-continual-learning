@@ -40,10 +40,6 @@ class MetricsEvaluator():
 
         self.results_dict = {}
         self.metrics = copy.deepcopy(config.metrics)
-        self.ranking_metrics = copy.deepcopy(config.ranking_metrics)
-
-        # Episodic evaluation
-        self.episode_ranking_metrics = [] # currently not implemented!
 
         self.execution_times = execution_times
         self.results_path = config.results_path

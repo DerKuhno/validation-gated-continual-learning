@@ -23,6 +23,7 @@ def main(hyperparams: dict):
     """
     
     root = Path(__file__).parent
+    # Skips pretraining, if a pretrained model is provided under: "results/16Weeks-Baseline-Seed-{seed}/best_model.pth"
     # pretrained_model_path = root / "results/16Weeks-Baseline"
 
     config = ExperimentConfig(
@@ -30,6 +31,7 @@ def main(hyperparams: dict):
         collection = "ESA-Mission1",
         dataset = "84_months",
         hyperparameter_search=hyperparams,
+        # pre_trained_model_path = pretrained_model_path,
     )
     init_logging(config.results_path)
 
@@ -54,7 +56,6 @@ def main(hyperparams: dict):
     dataset_manager_list = [DatasetManager(
         config=config,
         include_test=True,  # True: loads test data
-        client_idx=1,
     )]
     logging.info(f"Datasetmanager initialized!")
 

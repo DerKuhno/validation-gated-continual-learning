@@ -1,6 +1,7 @@
 import abc
 import warnings
 from typing import Tuple
+import sklearn
 
 import numpy as np
 from sklearn.utils import column_or_1d, assert_all_finite, check_consistent_length

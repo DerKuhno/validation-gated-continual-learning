@@ -143,7 +143,7 @@ class DatasetManager:
     #     return TelemanomDataset(merged_data_segments, mean, std, self.config)
 
 
-    def extend_dataset(self, new_data: List[np.ndarray], anomaly_flag: List[np.ndarray], validationsplit: float, test_set_idx: int = None):
+    def extend_dataset(self, new_data: List[np.ndarray], anomaly_flag: List[np.ndarray], validationsplit: float):
         """
         Extend the dataset with new data segments. Used in the Replay Buffer
 
@@ -164,8 +164,8 @@ class DatasetManager:
         
 
         # preparing data into segments
-        std = self.test.std.numpy() if test_set_idx is None else self.test[test_set_idx].std.numpy()
-        mean = self.test.mean.numpy() if test_set_idx is None else self.test[test_set_idx].mean.numpy()
+        std = self.test.std.numpy()
+        mean = self.test.mean.numpy()
         new_data = (np.concatenate(new_data, axis=0) * std) + mean # rescaling the normalized values
         anomaly_flag = np.concatenate(anomaly_flag, axis=0)
         assert len(new_data) == len(anomaly_flag), "data and anomalies must have the same length"
@@ -220,9 +220,6 @@ class DatasetManager:
                 num_windows = seg_len - self.tmp_dataset.sample_len + 1
                 # Store as (segment_index, start_position_in_segment)
                 self.tmp_dataset.indices.extend([(seg_idx, i) for i in range(num_windows)])
-                if hasattr(self.tmp_dataset, "satellite_indices"):
-                    sat_idx = test_set_idx if test_set_idx is not None else 0
-                    self.tmp_dataset.satellite_indices.append(sat_idx)
 
         # adding new val indices
         for seg_idx in range(last_num_val_segments, len(self.val.data_segments)):
@@ -231,9 +228,6 @@ class DatasetManager:
                 num_windows = seg_len - self.val.sample_len + 1
                 # Store as (segment_index, start_position_in_segment)
                 self.val.indices.extend([(seg_idx, i) for i in range(num_windows)])
-                if hasattr(self.val, "satellite_indices"):
-                    sat_idx = test_set_idx if test_set_idx is not None else 0
-                    self.val.satellite_indices.append(sat_idx)
 
         logging.info(f"shapes of tmp: {len(self.tmp_dataset.data_segments)}, {self.tmp_dataset.data_segments[0].shape}")
         logging.info(f"shapes of replay: {len(self.replay_buffer.data_segments)}, {self.replay_buffer.data_segments[0].shape}")

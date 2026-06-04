@@ -19,6 +19,7 @@ conda activate vgcl
 Download the ESA Anomalies Dataset from the link https://doi.org/10.5281/zenodo.12528696 (ESA-Mission1 and ESA-Mission2) into the "data" folder.
 
 ```bash
+mkdir validation-gated-continual-learning/data
 cd validation-gated-continual-learning/data
 # Download ESA-Mission1
 wget "https://zenodo.org/records/12528696/files/ESA-Mission1.zip" -O ESA-Mission1.zip
@@ -40,6 +41,7 @@ For data preperation, we refer to the datapreperation given in https://github.co
 git clone https://github.com/kplabs-pl/ESA-ADB
 cd ESA-ADB
 conda env create -f environment.yml
+conda activate timeeval
 ```
 ### Data preperation
 ```bash
@@ -192,11 +194,37 @@ hyperparameter_grid = {
     'continual_learning': [True],
     'cl_method': ["er", "der", "ser", "mir", "gem", "agem"],
     'seed': [42, 43, 44],
-    'buffer_size': [350, 700, 1_400, 3_500, 7_000, 14_000, 35_000, 70_000, 140_000, 350_000],
+    'replay_strat': ['episode_balanced'],
+    'buffer_size': [1_400, 3_500, 7_000, 14_000, 35_000, 70_000, 140_000, 350_000],
 }
 ```
 
 The experiments from Figure 7 can be done with the following dictionary in run.py:
+
+```python
+hyperparameter_grid = {
+    'continual_learning': [True],
+    'cl_method': ["er"],
+    'seed': [42, 43, 44],
+    'replay_strat': ['episode_balanced', 'loss_greedy', 'gss_greedy', 'latent_greedy', 'variance_greedy'],
+    'buffer_size': [1_400, 70_000],
+}
+```
+
+The experiments from Figure 8 can be done with the following dictionary in run.py:
+
+### Fine-tuning, ER, SER
+```python
+hyperparameter_grid = {
+    'collection': ["ESA-Mission2"],
+    'dataset': ["21_months"],
+    'continual_learning': [True],
+    'cl_method': ["finetuning", "er", "ser"],
+    'seed': [42, 43, 44, 45, 46, 47, 48, 49, 50, 51],
+    'buffer_size': [350, 700, 1_400, 3_500, 7_000, 14_000, 35_000, 70_000, 140_000, 350_000],
+}
+
+The experiments from Figure 8 can be done with the following dictionary in run.py:
 
 ### Fine-tuning, ER, SER
 ```python
@@ -225,7 +253,7 @@ hyperparameter_grid = {
     'continual_learning': [True],
     'fixed_epochs': [True],
     'fixed_num_epochs': [1, 5, 10],
-    'cl_method': ["finetuning", "er", "ser"]
+    'cl_method': ["finetuning", "er", "ser"],
     'seed': [42, 43, 44, 45, 46, 47, 48, 49, 50, 51],
 }
 ```

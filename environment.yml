@@ -10,6 +10,7 @@ dependencies:
   - tqdm
   - ipykernel
   - scikit-learn
+  - scipy=1.13.0
   - pip:
       - torch
       - river

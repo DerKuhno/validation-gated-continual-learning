@@ -68,10 +68,6 @@ def cl_method_params(config):
     elif config.replay_strat == 'loss_greedy':
         config.method_params.prune_frac = 0.05 # Fraction of datapoints with highest loss to prune (likely to be outliers/close do anomalies)
 
-    elif config.replay_strat == 'grad_norm_greedy':
-        config.method_params.prune_frac = 0.05 # Fraction of datapoints with highest loss to prune (likely to be outliers/close do anomalies)
-        config.method_params.gradient_samples = 1 # implemented without dropout
-
     elif config.replay_strat == 'variance_greedy':
         config.method_params.var_samples = 7 # Number of forward passes to calculate the variance with dropout, must be > 1
 
