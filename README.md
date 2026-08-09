@@ -260,6 +260,19 @@ hyperparameter_grid = {
 
 ## Citation
 
+```bibtex
+@article{KUHN2026971,
+title = {Validation-gated continual learning for anomaly detection in satellite telemetry},
+journal = {Acta Astronautica},
+volume = {249},
+pages = {971-985},
+year = {2026},
+issn = {0094-5765},
+doi = {https://doi.org/10.1016/j.actaastro.2026.07.065},
+url = {https://www.sciencedirect.com/science/article/pii/S0094576526005187},
+author = {Nils Kuhn and Bruno {Sánchez Gómez} and Natalia {Moreno Blasco} and Polona Caserman and Federico Antonello}
+}
+```
 
 ## Authors and Acknowledgment
 
